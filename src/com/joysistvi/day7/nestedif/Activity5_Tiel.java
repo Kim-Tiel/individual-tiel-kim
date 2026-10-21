@@ -7,15 +7,14 @@ public class Activity5_Tiel {
         Scanner input = new Scanner(System.in);
 
         // Step 1: Dial the USSD code (ask again, up to 3 attempts only)
-        final String USSD_CODE = "*143#";
-        final int MAX_ATTEMPTS = 3;
+        int MAX_ATTEMPTS = 3;
         int attempts = 1;
 
-        System.out.println("Dial " + USSD_CODE + " to access Globe Services");
+        System.out.println("Dial *143# to access Globe Services");
         System.out.print("Enter USSD Code: ");
         String ussdCode = input.next();
 
-        while (!ussdCode.equals(USSD_CODE)) {
+        while (!ussdCode.equals("*143#")) {
             if (attempts == MAX_ATTEMPTS) {
                 System.out.println("Too many invalid attempts. Please try again later.");
                 input.close();
