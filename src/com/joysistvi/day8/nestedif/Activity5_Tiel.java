@@ -1,4 +1,4 @@
-package com.joysistvi.day7.nestedif;
+package com.joysistvi.day8.nestedif;
 
 import java.util.Scanner;
 
@@ -7,15 +7,13 @@ public class Activity5_Tiel {
         Scanner input = new Scanner(System.in);
 
         // Step 1: Dial the USSD code (ask again, up to 3 attempts only)
-        int MAX_ATTEMPTS = 3;
-        int attempts = 1;
-
         System.out.println("Dial *143# to access Globe Services");
         System.out.print("Enter USSD Code: ");
         String ussdCode = input.next();
 
+        int attempts = 1;
         while (!ussdCode.equals("*143#")) {
-            if (attempts == MAX_ATTEMPTS) {
+            if (attempts == 3) {
                 System.out.println("Too many invalid attempts. Please try again later.");
                 input.close();
                 return; // early exit

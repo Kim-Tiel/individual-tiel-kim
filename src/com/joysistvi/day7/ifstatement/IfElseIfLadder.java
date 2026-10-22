@@ -1,4 +1,4 @@
-package com.joysistvi.day6.ifstatement;
+package com.joysistvi.day7.ifstatement;
 
 public class IfElseIfLadder {
 

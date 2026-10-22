@@ -1,9 +1,9 @@
-package com.joysistvi.day7.nestedif;
+package com.joysistvi.day7.ifstatement;
 
-public class NestedIfStatement {
+public class Activity4_Tiel {
     public static void main(String[] args){
 
-        int age = 2;
+        int age = 25;
 
         // Validate the age before processing
         if (age < 0 || age > 100) {
@@ -12,16 +12,9 @@ public class NestedIfStatement {
         }
 
         String category;
-        String subCategory = "";
-
-        // Categorize the age using an if-else-if ladder
+        // Categorize the age using an if-else ladder
         if (age <= 2) {              // 0 - 2
             category = "Baby";
-            if (age <= 1) {          // 0 - 1
-                subCategory = "Infant";
-            } else {                 // 2
-                subCategory = "Toddler";
-            }
         } else if (age <= 12) {      // 3 - 12
             category = "Child";
         } else if (age <= 19) {      // 13 - 19
@@ -32,16 +25,10 @@ public class NestedIfStatement {
             category = "Adult";
         } else {                     // 60 - 100
             category = "Senior";
-            if (age <= 75) {         // 60 - 75
-                subCategory = "Young-old Senior";
-            } else {                 // 76 - 100
-                subCategory = "Old Senior";
-            }
         }
 
         // Display output
         System.out.println("Age: " + age);
         System.out.println("Category: " + category);
-        System.out.println(!subCategory.isEmpty() ? "Sub Category: " + subCategory : "");
     }
 }
