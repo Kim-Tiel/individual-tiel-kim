@@ -28,12 +28,10 @@ public class Main {
                 break;
             }
 
-            System.out.println("Please fix the errors above and try again.");
-            System.out.println();
+            System.out.println("Please fix the errors above and try again.\n");
         }
 
-        System.out.println();
-        System.out.println("=== Account Details ===");
+        System.out.println("\n=== Account Details ===");
         System.out.println(account);
     }
 
