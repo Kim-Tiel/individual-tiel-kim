@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
+    static boolean hasError = false;
 
     public static void main(String[] args) {
         System.out.println("***********************************");
@@ -12,27 +13,47 @@ public class Main {
         System.out.println("***********************************");
         System.out.println("Please enter the details below:\n");
 
-        UserAccount account;
+        String firstName = readLine("Enter first name: ");
+        String middleName = readLine("Enter middle name (optional): ");
+        String lastName = readLine("Enter last name: ");
+        String address = readLine("Enter address: ");
+        String email = readLine("Enter email: ");
+        String password = readLine("Enter password: ");
 
-        while (true) {
-            String firstName = readLine("Enter first name: ");
-            String middleName = readLine("Enter middle name: ");
-            String lastName = readLine("Enter last name: ");
-            String address = readLine("Enter address: ");
-            String email = readLine("Enter email: ");
-            String password = readLine("Enter password: ");
+        System.out.println();
 
-            account = new UserAccount(firstName, middleName, lastName, address, email, password);
+        checkField(firstName, "first name");
+        checkField(lastName, "last name");
+        checkField(address, "address");
+        checkField(email, "email");
+        checkField(password, "password");
 
-            if (account.isValid()) {
-                break;
-            }
+        if (hasError) {
+            System.out.println("\nRegistration failed. Please fix the errors above.");
+        } else {
+            UserAccount account = new UserAccount(firstName, middleName, lastName, address, email, password);
 
-            System.out.println("Please fix the errors above and try again.\n");
+            System.out.println("=== Account Details ===");
+            System.out.println(account);
         }
 
-        System.out.println("\n=== Account Details ===");
-        System.out.println(account);
+        scanner.close();
+    }
+
+    // Checks one field and prints its error, if any
+    public static void checkField(String input, String field) {
+        try {
+            switch (field) {
+                case "first name" -> UserAccount.validateEmpty(input, "First name");
+                case "last name" -> UserAccount.validateEmpty(input, "Last name");
+                case "address" -> UserAccount.validateEmpty(input, "Address");
+                case "email" -> UserAccount.validateEmail(input);
+                case "password" -> UserAccount.validatePassword(input);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("- " + e.getMessage());
+            hasError = true;
+        }
     }
 
     // Prints the prompt and reads one line

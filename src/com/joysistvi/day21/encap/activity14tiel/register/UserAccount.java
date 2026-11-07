@@ -10,64 +10,23 @@ public class UserAccount {
     private String password;
 
     // ===================== CONSTRUCTOR =====================
-    public UserAccount(String firstName, String middleName, String lastName, String address, String email, String password) {
-        try {
-            this.setFirstName(firstName);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        this.setMiddleName(middleName);
-
-        try {
-            this.setLastName(lastName);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try {
-            this.setAddress(address);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try {
-            this.setEmail(email);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try {
-            this.setPassword(password);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+    public UserAccount(String firstName, String middleName, String lastName,
+                       String address, String email, String password) {
+        this.firstName = validateEmpty(firstName, "First name");
+        this.middleName = middleName == null ? "" : middleName.trim();
+        this.lastName = validateEmpty(lastName, "Last name");
+        this.address = validateEmpty(address, "Address");
+        this.email = validateEmail(email);
+        this.password = validatePassword(password);
     }
 
-    public void setFirstName(String firstName) {
-        if (firstName.isEmpty()) {
-            throw new IllegalArgumentException("First name is required.");
+    // ===================== VALIDATION =====================
+    // Used for first name, last name, and address
+    public static String validateEmpty(String value, String label) {
+        if (value == null || value.trim().isEmpty()) {
+            throw new IllegalArgumentException(label + " is required.");
         }
-        this.firstName = firstName;
-    }
-
-    // Middle name is optional, so empty is allowed
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public void setLastName(String lastName) {
-        if (lastName.isEmpty()) {
-            throw new IllegalArgumentException("Last name is required.");
-        }
-        this.lastName = lastName;
-    }
-
-    public void setAddress(String address) {
-        if (address.isEmpty()) {
-            throw new IllegalArgumentException("Address is required.");
-        }
-        this.address = address;
+        return value.trim();
     }
 
     // Email rules:
@@ -75,8 +34,8 @@ public class UserAccount {
     //   - has exactly one @, not at the start
     //   - has a dot after the @, with at least one character in between
     //   - does not end with a dot
-    public void setEmail(String email) {
-        if (email.isEmpty()) {
+    public static String validateEmail(String email) {
+        if (email == null || email.isEmpty()) {
             throw new IllegalArgumentException("Email is required.");
         }
 
@@ -108,15 +67,15 @@ public class UserAccount {
             throw new IllegalArgumentException("Email must not end with a dot.");
         }
 
-        this.email = email;
+        return email;
     }
 
     // Password rules:
     //   - at least 8 characters
     //   - no spaces
     //   - at least 1 uppercase, 1 lowercase, 1 number, 1 special character
-    public void setPassword(String password) {
-        if (password.length() < 8) {
+    public static String validatePassword(String password) {
+        if (password == null || password.length() < 8) {
             throw new IllegalArgumentException("Password must be at least 8 characters.");
         }
 
@@ -159,7 +118,7 @@ public class UserAccount {
             throw new IllegalArgumentException("Password must have at least 1 special character (e.g. @, #, !).");
         }
 
-        this.password = password;
+        return password;
     }
 
     // Joins first, middle, and last name
@@ -168,11 +127,6 @@ public class UserAccount {
             return firstName + " " + lastName;
         }
         return firstName + " " + middleName + " " + lastName;
-    }
-
-    // Returns true only if all required fields passed validation
-    public boolean isValid() {
-        return firstName != null && lastName != null && address != null && email != null && password != null;
     }
 
     // ===================== toString =====================
