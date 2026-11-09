@@ -2,6 +2,7 @@ package com.joysistvi.day22.inheritance.activity15tiel;
 
 public class Main {
     public static void main(String[] args) {
+
         Ballpen ballpen = new Ballpen("Pilot", "Black", 20, 1);
         Highlighter highlighter = new Highlighter("Stabilo", "Yellow", 12, "Neon");
 
