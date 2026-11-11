@@ -70,4 +70,11 @@ public class Main {
      * Method overloading: same method name in the same class but different parameters, like write(), write(String), and write(String, int).
      * Method overriding: a child class replaces a parent method with the same name and parameters, like refill() in Ballpen.
      */
+
+    /*
+     * Abstract class (extends): a partial blueprint that can have fields, a constructor,
+     * and both abstract and regular methods. A class can extend only ONE class.
+     * Interface (implements): a contract that lists methods a class must have and can hold
+     * only constants. A class can implement MANY interfaces, like Ballpen with Refillable and Clickable.
+     */
 }
