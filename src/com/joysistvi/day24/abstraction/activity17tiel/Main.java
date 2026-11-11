@@ -54,6 +54,7 @@ public class Main {
     public static void testPen(Pen pen) {
         System.out.println(pen);
         pen.write();
+        pen.store();
         System.out.println();
     }
 
