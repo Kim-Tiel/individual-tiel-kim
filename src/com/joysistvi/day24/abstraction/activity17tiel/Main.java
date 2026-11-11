@@ -30,7 +30,7 @@ public class Main {
         testRefillable(ballpen);
         testRefillable(highlighter);
 
-        System.out.println("\n=== testClickable ===");
+        System.out.println("=== testClickable ===");
         testClickable(ballpen);
         testRefillable(highlighter);
 
@@ -59,7 +59,7 @@ public class Main {
 
     public static void testRefillable(Refillable refillable){
         refillable.refill();
-        System.out.println("Maximum refills: " + Refillable.MAX_REFILLS);
+        System.out.println("Maximum refills: " + Refillable.MAX_REFILLS + "\n");
     }
 
     public static void testClickable(Clickable clickable){
