@@ -51,8 +51,17 @@ public class TodoManager {
     }
 
     public static void addTask() {
-        System.out.print("Enter a task: ");
-        String task = scanner.nextLine().trim();
+        String task;
+
+        do {
+            System.out.print("Enter a task: ");
+            task = scanner.nextLine().trim();
+
+            if (task.isEmpty()) {
+                System.out.println("Task cannot be empty.");
+            }
+        } while (task.isEmpty());
+
         tasks.add(task);
         System.out.println("Task added.");
     }
